@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using AutoInsuranceQuotes.Models;
 using Newtonsoft.Json;
@@ -13,13 +14,13 @@ namespace AutoInsuranceQuotes.Controllers
     public class QuotesController : ApiController
     {
         // GET: api/Quotes
-        public List<AutoQuote> Get(int pageNumber, string state, string make, string former)
+        public async Task<List<AutoQuote>> Get(int pageNumber, string state, string make, string former)
         {
             List<AutoQuote> autoQuotes = new List<AutoQuote>();
 
             using (StreamReader reader = new StreamReader(Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory) + @"./app_data/auto.leads.json"))
             {
-                string jsonResponse = reader.ReadToEnd();
+                string jsonResponse = await reader.ReadToEndAsync();
 
                 int startIndex = (pageNumber - 1) * 5;
 
