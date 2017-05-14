@@ -1,0 +1,224 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page - My Web Application</title>
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="container body-content">
+
+        <style>
+            h1 {
+                margin-bottom: 20px;
+            }
+
+            .pagination {
+                display: inline-block;
+            }
+
+                .pagination a {
+                    color: black;
+                    float: left;
+                    padding: 8px 16px;
+                    text-decoration: none;
+                }
+
+                    .pagination a.active {
+                        background-color: #4CAF50;
+                        color: white;
+                    }
+
+                    .pagination a:hover:not(.active) {
+                        background-color: #ddd;
+                    }
+        </style>
+        <div>
+            <h1>Here are the auto quotes</h1>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h2>Filters</h2>
+                        <label for="statesList">States</label>
+                        <br />
+                        <select id="statesList">
+                            <option value="">Select State</option>
+                        </select>
+                        <br />
+                        <br />
+                        <label for="vehicleMakeList">Vehicle Make</label>
+                        <br />
+                        <select id="vehicleMakeList">
+                            <option value="">Select Make</option>
+                        </select>
+                        <br />
+                        <br />
+                        <label for="formerInsurerList">Former Insurer</label>
+                        <br />
+                        <select id="formerInsurerList">
+                            <option value="">Select Former Insurer</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-9" id="results">
+                        <table id="quoteTable" class="table table-bordered table-condensed table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>State</th>
+                                <th>Vehicle Make</th>
+                                <th>Former Insurer</th>
+                                <th>Details</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <br />
+                        <div class="pagination">
+                            <a href="#">&laquo;</a>
+                            <a id="pageOne" href="#" class="active" onclick="LoadQuotes(1)">1</a>
+                            <a id="pageTwo" href="#" onclick="LoadQuotes(2)">2</a>
+                            <a id="pageThree" href="#" onclick="LoadQuotes(3)">3</a>
+                            <a id="pageFour" href="#" onclick="LoadQuotes(4)">4</a>
+                            <a href="#">&raquo;</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                LoadQuotes(1);
+                LoadStates();
+                LoadVehicleMakes();
+                LoadFormerInsurers();
+
+                $('#statesList').change(function (e) { LoadQuotes(1); });
+
+                $('#vehicleMakeList').change(function (e) { LoadQuotes(1); });
+
+                $('#formerInsurerList').change(function (e) { LoadQuotes(1); });
+            });
+
+            function LoadQuotes(pageNumber) {
+
+                var selectedState = $('#statesList').val();
+                var selectedMake = $('#vehicleMakeList').val();
+                var selectedFormer = $('#formerInsurerList').val();
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://localhost:3738/api/quotes?pageNumber=" + pageNumber + "&state=" + selectedState + "&make=" + selectedMake + "&former=" + selectedFormer,
+                    "error": function (msg, textstatus, error) {
+                        alert(textstatus + "; " + error);
+                    },
+                    success: function PopulateTable(response) {
+                        var tr;
+                        $('#quoteTable tbody tr').remove();
+                        //Append each row to html table
+                        for (var i = 0; i < response.length; i++) {
+                            tr = $('<tr>');
+                            tr.append("<td>" + response[i].Consumer.first_name + "</td>");
+                            tr.append("<td>" + response[i].Consumer.last_name + "</td>");
+                            tr.append("<td>" + response[i].Consumer.state + "</td>");
+                            tr.append("<td>" + response[i].Vehicle[0].make + "</td>");
+                            tr.append("<td>" + response[i].Coverage.former_insurer + "</td>");
+                            tr.append("<td><a href='http://localhost:3738/Details.html?quoteId=" +
+                                response[i].ID +
+                                "'>view</a></td>");
+                            tr.append("</tr>");
+                            $('#quoteTable').append(tr);
+                        }
+                    }
+                });
+            };
+
+            function LoadStates() {
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://localhost:3738/api/states",
+                    "error": function (msg, textstatus, error) {
+                        alert(textstatus + "; " + error);
+                    },
+                    success: function PopulateStatesDropdown(response) {
+                        var option;
+
+                        for (var i = 0; i < response.length; i++) {
+                            option = $("<option value='" + response[i] + "'>" + response[i] + "</option>");
+                            $('#statesList').append(option);
+                        }
+                    }
+                });
+            };
+
+            function LoadVehicleMakes() {
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://localhost:3738/api/vehiclemakes",
+                    "error": function (msg, textstatus, error) {
+                        alert(textstatus + "; " + error);
+                    },
+                    success: function PopulateVehicleMakesDropdown(response) {
+                        var option;
+
+                        for (var i = 0; i < response.length; i++) {
+                            option = $("<option value='" + response[i] + "'>" + response[i] + "</option>");
+                            $('#vehicleMakeList').append(option);
+                        }
+                    }
+                });
+            };
+            $(".pagination a").click(function(){
+                $("a").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            function LoadFormerInsurers() {
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://localhost:3738/api/formerinsurers",
+                    "error": function (msg, textstatus, error) {
+                        alert(textstatus + "; " + error);
+                    },
+                    success: function PopulateFormerInsurersDropdown(response) {
+                        var option;
+
+                        for (var i = 0; i < response.length; i++) {
+                            option = $("<option value='" + response[i] + "'>" + response[i] + "</option>");
+                            $('#formerInsurerList').append(option);
+                        }
+                    }
+                });
+            };
+
+        </script>
+        <hr />
+        <footer>
+            <p>&copy; 2017 - My Web Application</p>
+        </footer>
+    </div>
+
+ </body>
+</html>

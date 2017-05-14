@@ -1,0 +1,322 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index - My Web Application</title>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="container body-content">
+
+        <style>
+            .boldLabel {
+                font-weight: bold;
+                margin-top: 5px;
+            }
+        </style>
+
+        <h1>Auto Quote Details</h1>
+
+        <div>
+            <hr />
+            <h2>For: <span id="firstName"></span> <span id="lastName"></span>, Age: <span id="age"></span>, Gender: <span id="gender"></span></h2>
+            <dl class="dl-horizontal"></dl>
+
+            <h3>Credit rating: <span id="creditRating"></span></h3>
+            <dl class="dl-horizontal"></dl>
+
+            <h4>Comments: <span id="comments"></span></h4>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Birthdate:
+                        </div>
+                        <div id="birthDate"></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Occupation:
+                        </div>
+                        <div id="occupation"></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            How to contact:
+                        </div>
+                        <div id="contactMethod"></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Highest level:
+                        </div>
+                        <div id="highestLevel"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Email:
+                        </div>
+                        <div id="email"></div>
+                        <div class="boldLabel">
+                            Property type:
+                        </div>
+                        <div id="propertyType"></div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Address:
+                        </div>
+                        <div id="address"></div>
+                        <div id="address2"></div>
+                        <span id="city"></span>, <span id="state"></span> <span id="zipCode"></span>
+                        <div id="county"></div>
+                        <div class="boldLabel">
+                            Own or Rent:
+                        </div>
+                        <div id="ownOrRent"></div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Years at address:
+                        </div>
+                        <div id="yearsAtAddress"></div>
+                        <div class="boldLabel">
+                            Currently at address:
+                        </div>
+                        <div id="currentlyAtAddress"></div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Primary phone number:
+                        </div>
+                        <span id="areaCodePrimary"></span>
+                        <span id="primaryPhone"></span>
+                        <div class="boldLabel">
+                            Secondary phone number:
+                        </div>
+                        <span id="areaCodeSecondary"></span>
+                        <span id="secondaryPhone"></span>
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Months insured:
+                        </div>
+                        <div id="monthsInsured"></div>
+                        <div class="boldLabel">
+                            Has coverage:
+                        </div>
+                        <div id="hasCoverage"></div>
+                        <div class="boldLabel">
+                            Type:
+                        </div>
+                        <div id="type"></div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Bodily Injury person:
+                        </div>
+                        <div id="bodilyinjuryPerson"></div>
+                        <div class="boldLabel">
+                            Bodily Injury accident:
+                        </div>
+                        <div id="bodilyinjuryAccident"></div>
+                        <div class="boldLabel">
+                            Deductible:
+                        </div>
+                        <div id="deductible"></div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Property damage:
+                        </div>
+                        <div id="propertyDamage"></div>
+                        <div class="boldLabel">
+                            Expriration date:
+                        </div>
+                        <div id="expirationDate"></div>
+                        <div class="boldLabel">
+                            Expriration days remaining:
+                        </div>
+                        <div id="expirationDaysRemaining"></div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            dtgExpirationDate:
+                        </div>
+                        <div id="dtgExpirationDate"></div>
+                        <div class="boldLabel">
+                            Former insurer:
+                        </div>
+                        <div id="formerInsurer"></div>
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Year:
+                        </div>
+                        <div id="year">
+                            1992
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Make:
+                        </div>
+                        <div id="make">
+                            HONDA
+                        </div>
+                        <div class="boldLabel">
+                            Model:
+                        </div>
+                        <div id="model">
+                            ACCORD EX
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Days used:
+                        </div>
+                        <div id="daysUsed">
+                            0
+                        </div>
+                        <div class="boldLabel">
+                            Use:
+                        </div>
+                        <div id="use">
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="boldLabel">
+                            Distance:
+                        </div>
+                        <div id="distance">
+                            0
+                        </div>
+                        <div class="boldLabel">
+                            Annual distance:
+                        </div>
+                        <div id="annualDistance">
+                            0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; 2017 - My Web Application</p>
+        </footer>
+    </div>
+
+    <script>
+        $(document).ready(LoadQuoteDetails());
+
+        function LoadQuoteDetails() {
+            var queries = {};
+            $.each(document.location.search.substr(1).split('&'), function (c, q) {
+                var i = q.split('=');
+                queries[i[0].toString()] = i[1].toString();
+            });
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "http://localhost:3738/api/Details?quoteId=" + queries.quoteId,
+                "error": function (msg, textstatus, error) {
+                    alert(textstatus + "; " + error);
+                },
+                success: function (response) {
+                    var date = new Date(response.Consumer.birthdate);
+                    var birthDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+                    $('#birthDate').text(birthDate);
+        
+                    $('#occupation').text(response.Consumer.occupation);
+                    $('#firstName').text(response.Consumer.first_name);
+                    $('#lastName').text( response.Consumer.last_name);
+                    $('#age').text(response.Consumer.age);
+                    $('#gender').text(response.Consumer.gender);
+                    $('#creditRating').text(response.Consumer.credit_rating);
+                    $('#comments').text(response.Consumer.comments);
+                    $('#contactMethod').text(response.Consumer.contact_method);
+                    $('#highestLevel').text(response.Consumer.highest_level);
+                    $('#email').text(response.Consumer.email);
+                    $('#propertyType').text(response.Consumer.property_type);
+                    $('#address').text(response.Consumer.address);
+                    $('#address2').text(response.Consumer.address2);
+                    $('#city').text(response.Consumer.city);
+                    $('#state').text(response.Consumer.state);
+                    $('#zipCode').text(response.Consumer.zip_code);
+                    $('#county').text(response.Consumer.county);
+                    $('#ownOrRent').text(response.Consumer.own_or_rent);
+                    $('#yearsAtAddress').text(response.Consumer.years_at_address);
+                    $('#currentlyAtAddress').text(response.Consumer.is_currently_at_address);
+                    $('#areaCodePrimary').text(response.Consumer.area_code);
+                    $('#primaryPhone').text(response.Consumer.primary_phone);
+                    $('#areaCodeSecondary').text(response.Consumer.area_code);
+                    $('#secondaryPhone').text(response.Consumer.secondary_phone);
+
+                    $('#monthsInsured').text(response.Coverage.months_insured);
+                    $('#hasCoverage').text(response.Coverage.has_coverage);
+                    $('#type').text(response.Coverage.type);
+                    $('#bodilyinjuryPerson').text(response.Coverage.bodilyinjury_person);
+                    $('#bodilyinjuryAccident').text(response.Coverage.bodilyinjury_accident);
+                    $('#deductible').text(response.Coverage.deductible);
+                    $('#propertyDamage').text(response.Coverage.propertydamage);
+                    date = new Date(response.Coverage.expiration_date);
+                    var expirationDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+                    $('#expirationDate').text(expirationDate);
+                    $('#expirationDaysRemaining').text(response.Coverage.expiration_days_remaining);
+                    date = new Date(response.Coverage.dtgExpirationDate);
+                    var dtgExpirationDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear(); 
+                    $('#dtgExpirationDate').text(dtgExpirationDate);
+                    $('#formerInsurer').text(response.Coverage.former_insurer);
+
+                    for (var i = 0; i < response.Vehicle.length; i++) {
+                        $('#year').text(response.Vehicle[i].year);
+                        $('#make').text(response.Vehicle[i].make);
+                        $('#model').text(response.Vehicle[i].model);
+                        $('#daysUsed').text(response.Vehicle[i].days_used);
+                        $('#use').text(response.Vehicle[i].use);
+                        $('#distance').text(response.Vehicle[i].distance);
+                        $('#annualDistance').text(response.Vehicle[i].annual_distance);
+                    }
+
+                }
+            });
+        };
+    </script>
+</body>
+</html>
