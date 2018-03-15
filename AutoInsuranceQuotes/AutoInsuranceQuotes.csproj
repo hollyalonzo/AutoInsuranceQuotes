@@ -107,6 +107,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Details - Copy.html" />
     <Content Include="Details.html" />
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
