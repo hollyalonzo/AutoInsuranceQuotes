@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -27,57 +26,126 @@
                 margin-bottom: 20px;
             }
 
-            .pagination {
-                display: inline-block;
+            h2 {
+                margin-top: 0;
             }
 
-                .pagination a {
-                    color: black;
-                    float: left;
-                    padding: 8px 16px;
-                    text-decoration: none;
+            .pagination {
+                display: inline-block;
+                grid-column-start: 2;
+                grid-column-end: 2;
+                grid-row-start: 3;
+                grid-row-end: 4;
+                margin: 0;
+            }
+
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .pagination a.underline {
+                text-decoration: underline;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+
+            .grid-container {
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-gap: 10px;
+                background-color: #2196F3;
+                padding: 10px;
+            }
+
+                .grid-container > div {
+                    background-color: rgba(255, 255, 255, 0.8);
+                    padding: 20px 10px 10px 10px;
+                    font-size: 20px;
                 }
 
-                    .pagination a.active {
-                        background-color: #4CAF50;
-                        color: white;
+            .item1 {
+                grid-row: 1 / 2;
+                grid-column-start: 1;
+                grid-column-end: 1;
+                overflow-x: auto;
+            }
+
+            .item2 {
+                grid-column-start: 2;
+                grid-column-end: 2;
+                grid-row-start: 1;
+                grid-row-end: 3;
+                overflow-x: auto;
+            }
+
+            @media screen and (max-width: 420px) {
+                .grid-container {
+                    grid-template-columns: auto;
+                    padding: 5px;
+                }
+
+                    .grid-container > div {
+                        padding-right: 5px;
+                        font-size: 10px;
                     }
 
-                    .pagination a:hover:not(.active) {
-                        background-color: #ddd;
-                    }
+                .item2 {
+                    grid-column-start: 1;
+                    grid-column-end: 1;
+                    grid-row-start: 2;
+                    grid-row-end: 4;
+                }
+
+                .pagination {
+                    grid-column-start: 1;
+                    grid-column-end: 1;
+                    grid-row-start: 4;
+                    grid-row-end: 5;
+                }
+            }
+            
         </style>
+
         <div>
             <h1>Here are the auto quotes</h1>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <h2>Filters</h2>
-                        <label for="statesList">States</label>
-                        <br />
-                        <select id="statesList">
-                            <option value="">Select State</option>
-                        </select>
-                        <br />
-                        <br />
-                        <label for="vehicleMakeList">Vehicle Make</label>
-                        <br />
-                        <select id="vehicleMakeList">
-                            <option value="">Select Make</option>
-                        </select>
-                        <br />
-                        <br />
-                        <label for="formerInsurerList">Former Insurer</label>
-                        <br />
-                        <select id="formerInsurerList">
-                            <option value="">Select Former Insurer</option>
-                        </select>
-                    </div>
+            <div class="grid-container">
+                <div class="item1">
+                    <h2>Filters</h2>
+                    <label for="statesList">States</label>
+                    <br />
+                    <select id="statesList">
+                        <option value="">Select State</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label for="vehicleMakeList">Vehicle Make</label>
+                    <br />
+                    <select id="vehicleMakeList">
+                        <option value="">Select Make</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label for="formerInsurerList">Former Insurer</label>
+                    <br />
+                    <select id="formerInsurerList">
+                        <option value="">Select Former Insurer</option>
+                    </select>
+                </div>
 
-                    <div class="col-lg-9" id="results">
-                        <table id="quoteTable" class="table table-bordered table-condensed table-hover table-striped">
-                            <thead>
+                <div class="item2" id="results">
+                    <table id="quoteTable" class="table table-bordered table-condensed table-hover table-striped">
+                        <thead>
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
@@ -86,24 +154,22 @@
                                 <th>Former Insurer</th>
                                 <th>Details</th>
                             </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                        <br />
-                        <div class="pagination">
-                            <a href="#">&laquo;</a>
-                            <a id="pageOne" href="#" class="active" onclick="LoadQuotes(1)">1</a>
-                            <a id="pageTwo" href="#" onclick="LoadQuotes(2)">2</a>
-                            <a id="pageThree" href="#" onclick="LoadQuotes(3)">3</a>
-                            <a id="pageFour" href="#" onclick="LoadQuotes(4)">4</a>
-                            <a href="#">&raquo;</a>
-                        </div>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
 
-                    </div>
+                <div class="pagination">
+                    <a href="#" onclick="DeterminePageToLoad('reverse')">&laquo;</a>
+                    <a id="page1" href="#" class="active" onclick="LoadQuotes(1, 'true')">1</a>
+                    <a id="page2" href="#" onclick="LoadQuotes(2, 'true')">2</a>
+                    <a id="page3" href="#" onclick="LoadQuotes(3, 'true')">3</a>
+                    <a id="page4" href="#" onclick="LoadQuotes(4, 'true')">4</a>
+                    <a href="#" onclick="DeterminePageToLoad('forward')">&raquo;</a>
                 </div>
             </div>
         </div>
-
+        <div id="activePage" class="hidden"></div>
         <script>
             $(document).ready(function () {
                 LoadQuotes(1);
@@ -116,10 +182,28 @@
                 $('#vehicleMakeList').change(function (e) { LoadQuotes(1); });
 
                 $('#formerInsurerList').change(function (e) { LoadQuotes(1); });
+                $('#activePage').val(1);
             });
 
-            function LoadQuotes(pageNumber) {
+            function DeterminePageToLoad(direction) {
+                var maxPages = 4;
+                var activePage = parseInt($('#activePage').val());
 
+                $('#page' + (activePage)).removeClass("underline");
+
+                if (direction == 'forward' && activePage < maxPages) {
+                    activePage = activePage + 1;
+                }
+                else if (direction == 'reverse' && activePage > 1) {
+                    activePage = activePage - 1;
+                }
+
+                $('#page' + activePage).addClass("underline");
+
+                LoadQuotes(activePage, false);
+            }
+
+            function LoadQuotes(pageNumber, removeUnderline) {
                 var selectedState = $('#statesList').val();
                 var selectedMake = $('#vehicleMakeList').val();
                 var selectedFormer = $('#formerInsurerList').val();
@@ -133,10 +217,12 @@
                     },
                     success: function PopulateTable(response) {
                         var tr;
+                        $('#activePage').val(pageNumber);
+
                         $('#quoteTable tbody tr').remove();
                         //Append each row to html table
                         for (var i = 0; i < response.length; i++) {
-                            tr = $('<tr>');
+                            tr = $("<tr>");
                             tr.append("<td>" + response[i].Consumer.first_name + "</td>");
                             tr.append("<td>" + response[i].Consumer.last_name + "</td>");
                             tr.append("<td>" + response[i].Consumer.state + "</td>");
@@ -148,6 +234,15 @@
                             tr.append("</tr>");
                             $('#quoteTable').append(tr);
                         }
+
+                        if (removeUnderline == "true") {
+                            $("a").removeClass("underline");
+                        }
+
+                        $(".pagination a").click(function () {
+                            $("a").removeClass("active");
+                            $(this).addClass("active");
+                        });
                     }
                 });
             };
@@ -189,10 +284,6 @@
                     }
                 });
             };
-            $(".pagination a").click(function(){
-                $("a").removeClass("active");
-                $(this).addClass("active");
-            });
 
             function LoadFormerInsurers() {
                 $.ajax({
@@ -216,7 +307,7 @@
         </script>
         <hr />
         <footer>
-            <p>&copy; 2017 - My Web Application</p>
+            <p>&copy; 2018 - My Web Application</p>
         </footer>
     </div>
 

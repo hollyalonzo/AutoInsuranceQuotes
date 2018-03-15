@@ -13,6 +13,12 @@ namespace AutoInsuranceQuotes.Controllers
 {
     public class StatesController : ApiController
     {
+        //private string _quotesFile = @"./app_data/auto.leads.json";
+
+        //public StatesController(string quotesFile)
+        //{
+        //    _quotesFile = quotesFile;
+        //}
         // GET: api/States
         public async Task<IEnumerable<string>> Get()
         {

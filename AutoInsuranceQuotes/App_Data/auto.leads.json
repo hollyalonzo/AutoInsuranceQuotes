@@ -81,16 +81,16 @@
             "property_type": ""
         },
         "vehicle": [
-            {
-                "year": 2013,
-                "make": "CHEVROLET",
-                "model": "EQUINOX LS",
-                "EngineInformation": "",
-                "days_used": 5,
-                "use": "Commute_Work",
-                "distance": 3,
-                "annual_distance": 10000
-            }
+          {
+            "year": 2013,
+            "make": "Chevrolet",
+            "model": "EQUINOX LS",
+            "EngineInformation": "",
+            "days_used": 5,
+            "use": "Commute_Work",
+            "distance": 3,
+            "annual_distance": 10000
+          }
         ],
         "coverage": {
             "months_insured": "48",
@@ -135,16 +135,16 @@
             "property_type": ""
         },
         "vehicle": [
-            {
-                "year": 2013,
-                "make": "CHEVROLET",
-                "model": "EQUINOX LS",
-                "EngineInformation": "",
-                "days_used": 5,
-                "use": "Commute_Work",
-                "distance": 3,
-                "annual_distance": 10000
-            }
+          {
+            "year": 2013,
+            "make": "Chevrolet",
+            "model": "EQUINOX LS",
+            "EngineInformation": "",
+            "days_used": 5,
+            "use": "Commute_Work",
+            "distance": 3,
+            "annual_distance": 10000
+          }
         ],
         "coverage": {
             "months_insured": "48",
@@ -243,16 +243,16 @@
             "property_type": ""
         },
         "vehicle": [
-            {
-                "year": 2010,
-                "make": "CHEVROLET",
-                "model": "IMPALA LT",
-                "EngineInformation": "",
-                "days_used": 0,
-                "use": "",
-                "distance": 0,
-                "annual_distance": 0
-            }
+          {
+            "year": 2010,
+            "make": "Chevrolet",
+            "model": "IMPALA LT",
+            "EngineInformation": "",
+            "days_used": 0,
+            "use": "",
+            "distance": 0,
+            "annual_distance": 0
+          }
         ],
         "coverage": {
             "months_insured": "",
@@ -374,7 +374,7 @@
             "expiration_date": "",
             "expiration_days_remaining": -736417,
             "dtgExpirationDate": "1-01-01",
-            "former_insurer": ""
+            "former_insurer": "None"
         }
     },
     {
